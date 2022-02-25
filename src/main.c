@@ -2,12 +2,15 @@
 #include <stdbool.h>
 
 const char* commands[] = {"test"};
+const debug = true;
 
 bool args_parser(int argc, const char** argv) {
     bool is_valid_command;
 
     int lenocomlist = sizeof(commands) / sizeof(const char*);
-    printf("%d\n", lenocomlist);
+
+    if (debug == true)
+        printf("%d\n", lenocomlist);
 
     for (int i = 0; i < lenocomlist; i++) {
         for (int j = 0; j < argc; j++) {
@@ -27,7 +30,6 @@ int main(int argc, const char** argv) {
     for (int i = 0; i < argc; i++) {
         printf("%s\n", argv[i]);
     }
-    printf("\n");
     bool command = args_parser(argc, argv);
     if (command == true) {
         printf("valid command\n");
