@@ -17,10 +17,12 @@ struct Command {
     int verified;
 }
 
+// COMMANDS
 void test_command() {
     printf("Hello world\n");
 }
 
+// ARGUMENT PARSER
 Command* args_parser(int argc, const char** argv) {
     bool is_valid_command = false;
     char* lencomliststr;
@@ -53,6 +55,7 @@ Command* args_parser(int argc, const char** argv) {
     return &command_struct;
 }
 
+// MAIN FUNCTION
 int main(int argc, const char** argv) {
     char* command_string;
     Command command_struct = *args_parser(argc, argv);
