@@ -12,9 +12,19 @@ Figure out how to make lencomliststr work with the concatination
 with lencomlistint
 */
 
-bool args_parser(int argc, const char** argv) {
+struct Command {
+    char* command_text;
+    int verified;
+}
+
+void test_command() {
+    printf("Hello world\n");
+}
+
+Command* args_parser(int argc, const char** argv) {
     bool is_valid_command = false;
     char* lencomliststr;
+    Command command_struct;
     int lencomlistint = (sizeof(commands) / sizeof(const char*));
 
     sprintf(lencomliststr, "%d", lencomlistint);
@@ -32,31 +42,46 @@ bool args_parser(int argc, const char** argv) {
             }
             if (strcmp(commands[i], argv[j])) {
                 is_valid_command = true;
+                command_struct.command_text = commands[i];
             }
         }
     }
-    return is_valid_command;
+
+    if (is_valid_command == true)
+        command_struct.verified = 1;
+
+    return &command_struct;
 }
 
 int main(int argc, const char** argv) {
     char* command_string;
+    Command command_struct = *args_parser(argc, argv);
+    command = command_struct.verified;
+    command_text = command_struct.command_text;
 
-    for (int i = 0; i < argc; i++) {
-        printf("%s\n", argv[i]);
+
+    if (debug) { // if debug is active, then print all arguments
+        for (int i = 0; i < argc; i++) {
+            printf("%s\n", argv[i]);
+        }
     }
 
-    bool command = args_parser(argc, argv);
-    sprintf(command_string, "%d", command);
+    switch (command) {
+        case true:
+            printf("valid command\n");
+            break;
+        case false:
+            printf("invalid command\n");
+            break;
+        default:
+            printf("an error has occurred\n");
+            break;
+    }
 
-    if (debug)
-        notification(command_string);
-    
-    if (command == true) {
-        printf("valid command\n");
-    } else if (command == false) {
-        printf("invalid command\n");
-    } else {
-        printf("an error has occurred\n");
+    switch (command_text) {
+        case commands[0]:
+        test_command();
+        break;
     }
 
     return 0;
