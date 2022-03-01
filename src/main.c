@@ -5,7 +5,7 @@ const char* commands[] = {"test"};
 const debug = true;
 
 bool args_parser(int argc, const char** argv) {
-    bool is_valid_command;
+    bool is_valid_command = false;
 
     int lenocomlist = sizeof(commands) / sizeof(const char*);
 
@@ -19,9 +19,7 @@ bool args_parser(int argc, const char** argv) {
             }
         }
     }
-    if (is_valid_command != true) {
-        is_valid_command = false;
-    }
+
 
     return is_valid_command;
 }
