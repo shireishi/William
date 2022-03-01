@@ -17,6 +17,20 @@ protocol.
     ],
     "address":"192.168.0.27",
     "port":"8080"
+},
+{
+    "name":"Elara's Computer",
+    "type":"computer",
+    "default":"off",
+    "action":"on",
+    "possible":[
+        "off",
+        "on",
+        "sleep",
+        "reset"
+    ],
+    "address":"192.168.0.21",
+    "port":"8080"
 }
 ```
 This configuration file will hold all of the necessary information to control the device which is registered.
