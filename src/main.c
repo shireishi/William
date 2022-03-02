@@ -12,10 +12,10 @@ Figure out how to make lencomliststr work with the concatination
 with lencomlistint
 */
 
-struct Command {
+typedef struct {
     char* command_text;
     int verified;
-}
+} Command;
 
 // COMMANDS
 void test_command() {
@@ -44,7 +44,7 @@ Command* args_parser(int argc, const char** argv) {
             }
             if (strcmp(commands[i], argv[j])) {
                 is_valid_command = true;
-                command_struct.command_text = commands[i];
+                command_struct.command_text = *commands[i];
             }
         }
     }
@@ -59,11 +59,10 @@ Command* args_parser(int argc, const char** argv) {
 int main(int argc, const char** argv) {
     char* command_string;
     Command command_struct = *args_parser(argc, argv);
-    command = command_struct.verified;
-    command_text = command_struct.command_text;
+    int command = command_struct.verified;
+    char* command_text = command_struct.command_text;
 
-
-    if (debug) { // if debug is active, then print all arguments
+    if (debug == true) { // if debug is active, then print all arguments
         for (int i = 0; i < argc; i++) {
             printf("%s\n", argv[i]);
         }
@@ -79,12 +78,10 @@ int main(int argc, const char** argv) {
         default:
             printf("an error has occurred\n");
             break;
-    }
+    };
 
-    switch (command_text) {
-        case commands[0]:
+    if (strcmp(command_string, *commands[0]) == 0) {
         test_command();
-        break;
     }
 
     return 0;
