@@ -5,12 +5,14 @@
 
 // LOCAL IMPORTS
 #include "system.c"
+#include "tools.c"
+#include "security.c"
 
 // GLOBAL DEFINITIONS
 #define debug 0
 
 // GLOBAL VARIABLES
-enum commands {"test", "echo"}; // Command list using enums to make location isolation easier
+enum commands {"test", "echo", "hash"}; // Command list using enums to make location isolation easier
 
 // COMMAND STRUCT
 typedef struct {
@@ -102,6 +104,8 @@ int main(int argc, const char** argv) {
         test_command();
     } else if (strcmp(command_text, commands[command_pos]) == 0) {
         echo(arguments);
+    } else if (strcmp(command_text, commands[command_pos]) == 0) {
+        printf(hash(listtostring(arguments)));
     } else {
         exit();
     }
