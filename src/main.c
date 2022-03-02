@@ -10,7 +10,7 @@
 #define debug 0
 
 // GLOBAL VARIABLES
-enum commands {"test", "echo"};
+enum commands {"test", "echo"}; // Command list using enums to make location isolation easier
 
 // COMMAND STRUCT
 typedef struct {
@@ -18,7 +18,7 @@ typedef struct {
     int verified;
 } Command;
 
-// COMMANDS
+// COMMANDS //
 void test_command() {
     printf("Hello world\n");
 }
@@ -26,6 +26,7 @@ void test_command() {
 void echo(const char* text) {
     printf(text);
 }
+///////////////
 
 // ARGUMENT PARSER
 Command args_parser(int argc, const char** argv) {
