@@ -10,7 +10,7 @@
 #define debug 0
 
 // GLOBAL VARIABLES
-enum commands = {"test", "echo"};
+enum commands {"test", "echo"};
 
 // COMMAND STRUCT
 typedef struct {
@@ -69,7 +69,7 @@ int main(int argc, const char** argv) {
     args_length = (sizeof(argv)/sizeof(const char*));
     int command = command_struct.verified;
     const char* command_text = command_struct.command_text;
-    enum command_pos = command_text;
+    enum commands command_pos = command_text;
 
     if (debug == 1) { // if debug is active, then print all arguments
         for (int i = 0; i < argc; i++) {
