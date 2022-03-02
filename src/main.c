@@ -67,7 +67,7 @@ Command args_parser(int argc, const char** argv) {
 int main(int argc, const char** argv) {
     // variable declaration
     Command command_struct = args_parser(argc, argv);
-    args_length = (sizeof(argv)/sizeof(const char*));
+    args_length = (sizeof(argv) / sizeof(const char*));
     int command = command_struct.verified;
     const char* command_text = command_struct.command_text;
     enum commands command_pos = command_text;
