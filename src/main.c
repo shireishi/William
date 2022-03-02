@@ -4,7 +4,7 @@
 
 #include "system.c"
 
-#define debug 1
+#define debug 0
 
 const char* commands[] = {"test"};
 
@@ -27,7 +27,7 @@ void test_command() {
 Command args_parser(int argc, const char** argv) {
     // variable declaration
     bool is_valid_command = false;
-    char* lencomliststr;
+    char* lencomliststr = NULL;
     Command command_struct;
     int lencomlistint = (sizeof(commands) / sizeof(const char*));
 
@@ -61,7 +61,6 @@ Command args_parser(int argc, const char** argv) {
 // MAIN FUNCTION
 int main(int argc, const char** argv) {
     // variable declaration
-    char* command_string;
     Command command_struct = args_parser(argc, argv);
     int command = command_struct.verified;
     const char* command_text = command_struct.command_text;
@@ -74,7 +73,7 @@ int main(int argc, const char** argv) {
 
     switch (command) { // determine if the arguments provided are commands
         case true:
-            printf("valid command\n");
+            notification("valid command\n");
             break;
         case false:
             printf("invalid command\n");
@@ -84,7 +83,7 @@ int main(int argc, const char** argv) {
             break;
     }
 
-    if (strcmp(command_string, commands[0]) == 0) { // determine the corresponding function for the command string
+    if (strcmp(command_text, commands[0]) == 0) { // determine the corresponding function for the command string
         test_command();
     }
 
