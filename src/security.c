@@ -4,8 +4,10 @@
 const char* hash(const char* text) { // This function should generate a hash based on the information provided
     // declare all variables
     int text_length = strlen(text);
-    char* char_list[text_length];
-    char* hash_list[text_length*2];
+    // -std=c99
+    
+    char* char_list = (char*)malloc(text_length*sizeof(char*));
+    char* hash_list = (char*)malloc(text_length*sizeof(char*)*2);
     int hash_list_length = (sizeof(hash_list) / sizeof(char*));
     const char* hashed_string[hash_list_length];
 
