@@ -6,10 +6,11 @@ class Hash {
     public:
     int hash_length;
 
-    Hash(const string data, const uint block_size, bool debug: False) {
+    Hash(const string data, const uint block_size: 8, bool debug: False) {
         const uint data_length = data.length();
         list<uint> data_array = list<uint>();
-        short int length_padding;
+        unsigned short int length_padding;
+        string combined_string = "";
 
         // convert the string data into quadrants
         for (int i = 0; i < data_length; i+=block_size) {
@@ -23,26 +24,13 @@ class Hash {
             uint* current_quad = &data_array[i];
 
             for (int j = 0; j < ((str)*current_quad).length(); j++) {
-                *current_quad[j] = (uint)*current_quad[j];
+                *current_quad[j] = std::hex << (uint)*current_quad[j];
             }
+
+            combined_string += (str)data_array[i];
         }
         if (debug == True)
             printf("%s\n", data_array);
-
-        // convert all ordinal quadrants into hexadecimal values
-        for (int i = 0; i < data_array.length(); i++) {
-            uint* current_quad = &data_array[i];
-
-            *current_quad = std::hex << *current_quad;
-        }
-        if (debug == True)
-            printf("%s\n", data_array);
-
-        // combine all hexadecimal quadrants into one long unsigned integer value.
-        string combined_string = "";
-        for (int n = 0; n < data_array.length(); n++) {
-            combined_string += data_array[n];
-        }
 
         // append the length padding and return
         length_padding == (short int)data_array.length();
@@ -52,6 +40,10 @@ class Hash {
 
         int result = (data_array.length() > 0) ? &data_array : 1;
 
+        if (debug == True)
+            printf("%d\n", result);
+
+        this->setHashLength(result);
         return result;
     }
 
@@ -59,7 +51,7 @@ class Hash {
         return 0;
     }
     private:
-    int hash_length(int hash) {
-        return hash.toString().length();
+    void setHashLength(int hash) {
+        this->hash_length = sizeof(hash) / sizeof(int);
     }
 };
