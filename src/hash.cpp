@@ -16,8 +16,7 @@ class Hash {
         for (int i = 0; i < data_length; i+=block_size) {
             data_array.push_back(data.substr(i, block_size));
         }
-        if(debug == True)
-            printf("%s\n", data_array);
+        this->debug(&data_array);
 
         // convert all quadrants to their ordinal counterparts.
         for (int i = 0; i < data_array.length(); i++) {
@@ -29,8 +28,7 @@ class Hash {
 
             combined_string += (str)data_array[i];
         }
-        if (debug == True)
-            printf("%s\n", data_array);
+        this->debug(&data_array)
 
         // append the length padding and return
         length_padding == (short int)data_array.length();
@@ -40,8 +38,7 @@ class Hash {
 
         int result = (data_array.length() > 0) ? &data_array : 1;
 
-        if (debug == True)
-            printf("%d\n", result);
+        this->debug(&result);
 
         this->setHashLength(result);
         return result;
@@ -53,5 +50,9 @@ class Hash {
     private:
     void setHashLength(int hash) {
         this->hash_length = sizeof(hash) / sizeof(int);
+    }
+
+    void debug(int* data) {
+        (debug == True) ? printf("%s\n", *data) : return;
     }
 };
