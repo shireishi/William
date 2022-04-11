@@ -36,12 +36,12 @@ class Hash {
 
         (string)data_array += (string)length_padding;
 
-        int result = (data_array.length() > 0) ? &data_array : 1;
+        int result = (data_array.length() > 0) ? &data_array : 0;
 
         this->debug(result);
-
         this->setHashLength(result);
-        return result;
+        
+        (result == 0) ? return void : return result;
     }
 
     ~Hash() {
