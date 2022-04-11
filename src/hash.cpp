@@ -6,7 +6,7 @@ class Hash {
     public:
     int hash_length;
 
-    Hash(const string data, const uint block_size: 8, bool debug: False) {
+    Hash(const string data, const uint block_size: 8, bool debug: false) {
         const uint data_length = data.length();
         list<uint> data_array = list<uint>();
         unsigned short int length_padding;
@@ -38,7 +38,7 @@ class Hash {
 
         int result = (data_array.length() > 0) ? &data_array : 1;
 
-        this->debug(&result);
+        this->debug(result);
 
         this->setHashLength(result);
         return result;
@@ -48,11 +48,11 @@ class Hash {
         return 0;
     }
     private:
-    void setHashLength(int hash) {
-        this->hash_length = sizeof(hash) / sizeof(int);
+    void setHashLength(int* hash) {
+        this->hash_length = *hash.length();
     }
 
     void debug(int* data) {
-        (debug == True) ? printf("%s\n", *data) : {};
+        (debug == true) ? printf("%s\n", *data) : {};
     }
 };
