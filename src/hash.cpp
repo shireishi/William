@@ -53,6 +53,6 @@ class Hash {
     }
 
     void debug(int* data) {
-        (debug == True) ? printf("%s\n", *data) : return;
+        (debug == True) ? printf("%s\n", *data) : {};
     }
 };
