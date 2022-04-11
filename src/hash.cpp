@@ -22,11 +22,11 @@ class Hash {
         for (int i = 0; i < data_array.length(); i++) {
             uint* current_quad = &data_array[i];
 
-            for (int j = 0; j < ((str)*current_quad).length(); j++) {
-                *current_quad[j] = std::hex << (uint)*current_quad[j];
+            for (int j = 0; j < ((string)*current_quad).length(); j++) {
+                *current_quad[j] = std::hex << ((uint)*current_quad[j] % data_length);
             }
 
-            combined_string += (str)data_array[i];
+            combined_string += (string)data_array[i];
         }
         this->debug(&data_array)
 
